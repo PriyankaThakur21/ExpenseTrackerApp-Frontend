@@ -10,6 +10,7 @@ async function savedetails(event){
     }
     catch(err){
     console.log(err)
+    alert(err.response.data);
     }
     event.target.reset();
 }
@@ -21,10 +22,10 @@ async function loginUser(event){
     const obj = {email, password};
     try{
         const post = await axios.post('http://localhost:3000/login',obj);
-        console.log(post.data);
         alert(post.data);
     }
     catch(error){
-        console.log(error);
+        console.log(error.response.data);
+        alert(error.response.data);
     }
 }
