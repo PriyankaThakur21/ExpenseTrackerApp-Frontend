@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <title>Expense Tracker</title>
+</head>
+<body>
+  <header id="main-header" class="bg-info text-white p-4 mb-3">
+    <div class="container">
+      <h1 id="header-title">Day to Day Expenses<span style="display:none">123</span></h1>
+    </div>
+  </header>
+  <div class="form-group container-fluid w-75 p-3" id="block">
+    <form id="form" class="p-3" onsubmit="saveExpense(event)">
+        <div class="form-row">
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Amount" id="amount">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Description" id="description">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Category" id="category">
+          </div>
+          <div class="">
+            <input type="submit" class="form-control btn-block btn-outline-info" value="Add expense">
+          </div>
+        </div>
+      </form>
+  </div>
+<script src="expense.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+</body>
+</html>

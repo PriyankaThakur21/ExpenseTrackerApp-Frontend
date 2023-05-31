@@ -5,7 +5,7 @@ async function savedetails(event){
     const password=event.target.password.value;
     const obj={name,email,password};
     try{
-    const post=await axios.post('http://localhost:3000/signin',obj);
+    const post=await axios.post('http://localhost:8080/signin',obj);
     alert(post.data);
     }
     catch(err){
@@ -21,11 +21,10 @@ async function loginUser(event){
     const password = event.target.password.value;
     const obj = {email, password};
     try{
-        const post = await axios.post('http://localhost:3000/login',obj);
-        alert(post.data);
+        const post = await axios.post('http://localhost:8080/login',obj);
+        location.href='expense.html';
     }
     catch(error){
-        console.log(error.response.data);
         alert(error.response.data);
     }
 }
