@@ -14,18 +14,23 @@
     </div>
   </header>
   <div class="form-group container-fluid border border-dark w-25 p-3" id="block">
-    <h2 class="h2 text-center">Sign Up</h2>
+    <h2 class="h2 text-center">Login</h2>
     <br>
-    <form id="form" onsubmit="savedetails(event)">
-        <label for="name" class="form-control-label">Name:</label>
-        <input type="text" class="form-control" id="name" name="name" value=""><br>
-        <label for="email" class="form-control-label">Email:</label>
+    <form id="form" onsubmit="loginUser(event)">
+        <label for="email" class="form-control-label">Email</label>
         <input type="text" class="form-control" id="email" name="email" value=""><br>
-        <label for="password" class="form-control-label">Password:</label>
+        <label for="password" class="form-control-label">Password</label>
+        <a href="" class="float-right">Forget?</a>
         <input type="password" class="form-control" name="password" id="password"><br>
-        <input type="submit" class="btn-block btn-outline-info" value="Register">
+        <input type="submit" class="btn-block btn-outline-info" value="Login">
       </form>
-   </div>
+      <br>
+      <div>
+        <p>Not a Member?
+        <a href="C:\Users\Priyanka\Desktop\projects\ExpenseTracker-Frontend\signUp.html">Create Account</a>
+        </p>
+      </div>
+  </div>
 <script src="users.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
 </body>
