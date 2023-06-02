@@ -5,7 +5,8 @@ async function saveExpense(event){
     const category=event.target.category.value;
     const obj={expense,description,category};
     try{
-    const post=await axios.post('http://localhost:8080/postexpense',obj)
+    const token = localStorage.getItem('token');
+    const post=await axios.post('http://localhost:8080/postexpense',obj, {headers: {"Authorization": token}});
     showonscreen(post.data);
     }
     catch(err){
@@ -34,7 +35,8 @@ function showonscreen(obj){
 
 async function deletedata(userid){
     try{
-    const dlt = axios.delete(`http://localhost:8080/deleteexpense/${userid}`);
+    const token = localStorage.getItem('token');
+    const dlt = axios.delete(`http://localhost:8080/deleteexpense/${userid}`, {headers: {"Authorization": token}});
     removeexpensefromscreen(userid);
     }
 catch(err){
@@ -50,7 +52,8 @@ function removeexpensefromscreen(userid){
 
 window.addEventListener('DOMContentLoaded', async ()=>{
     try{
-    const getExpenses= await axios.get('http://localhost:8080/getexpenses');
+        const token = localStorage.getItem('token');
+    const getExpenses= await axios.get('http://localhost:8080/getexpenses', {headers: {"Authorization": token}});
     for(let i in getExpenses.data){
         showonscreen(getExpenses.data[i]);
     }

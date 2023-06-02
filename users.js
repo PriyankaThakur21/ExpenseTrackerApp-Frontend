@@ -1,4 +1,4 @@
-async function savedetails(event){
+async function signup(event){
     event.preventDefault()
     const name=event.target.name.value;
     const email=event.target.email.value;
@@ -7,6 +7,7 @@ async function savedetails(event){
     try{
     const post=await axios.post('http://localhost:8080/signin',obj);
     alert(post.data);
+    location.href='login.html';
     }
     catch(err){
     console.log(err)
@@ -22,9 +23,13 @@ async function loginUser(event){
     const obj = {email, password};
     try{
         const post = await axios.post('http://localhost:8080/login',obj);
+        console.log(post);
+        alert(post.data.message);
+        localStorage.setItem('token', post.data.token);
         location.href='expense.html';
     }
     catch(error){
+        console.log(error);
         alert(error.response.data);
     }
 }
