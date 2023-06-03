@@ -2,7 +2,6 @@ document.getElementById('rzp-button1').onclick = async function(e){
     e.preventDefault();
     const token = localStorage.getItem('token');
     const response = await axios.get('http://localhost:3000/purchasepremium', {headers: {"Authorization": token}});
-    const orderId= response.data.order.id;
     var options = {
         "key": response.data.key_id, 
         "order_id": response.data.order.id, 
@@ -12,7 +11,7 @@ document.getElementById('rzp-button1').onclick = async function(e){
             payment_id:response.razorpay_payment_id
         },{headers: {"Authorization": token}}) 
         alert('You are a premium user now!');
-        // removePremiumBtn();
+        Premium();
     }
 }
     const rzp1 = new Razorpay(options);
@@ -24,9 +23,8 @@ document.getElementById('rzp-button1').onclick = async function(e){
     })
     }
 
-    // function removePremiumBtn(){
-    //     const parentel=document.getElementById('block');
-    //     const childel=document.getElementById(premiumbtn);
-    //     parentel.removeChild(childel)
-    // }
-    
+    function Premium(){
+        const btn = document.getElementById('rzp-button1');
+        btn.remove();
+        document.getElementById('label1').innerHTML = 'You are a Premium User! <input type="button" id="leaderboardbtn" class="btn btn-sm btn-outline-info m-2" value="Show leaderboard"></input>';
+    }

@@ -25,13 +25,8 @@ function showonscreen(obj){
     deletebtn.className='btn btn-info btn-sm';
     deletebtn.style='margin:10px'
     deletebtn.value='delete'
-    // const editbtn=document.createElement('input')
-    // editbtn.type='button'
-    // editbtn.value='edit'
-    // editbtn.onclick=function() {editdata(obj.id)};
     deletebtn.onclick=function() {deletedata(obj.id)};
     list.appendChild(deletebtn)
-    // list.appendChild(editbtn)
     p.appendChild(list);
 }
 
@@ -54,9 +49,12 @@ function removeexpensefromscreen(userid){
 
 window.addEventListener('DOMContentLoaded', async ()=>{
     try{
-        const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     const getExpenses= await axios.get('http://localhost:3000/getexpenses', {headers: {"Authorization": token}});
-    for(let i in getExpenses.data){
+    if(getExpenses.data.premiumUser===true){
+        Premium();
+    }
+    for(let i in getExpenses.data.expense){
         showonscreen(getExpenses.data[i]);
     }
 }
@@ -64,3 +62,9 @@ window.addEventListener('DOMContentLoaded', async ()=>{
         console.log(error);
     }
 })
+
+function Premium(){
+    const btn = document.getElementById('rzp-button1');
+    btn.remove();
+    document.getElementById('label1').innerHTML = 'You are a Premium User! <button id="leaderboardbtn" class="btn btn-sm btn-outline-info m-2">Show leaderboard</button>';
+}
