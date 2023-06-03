@@ -16,7 +16,7 @@ async function saveExpense(event){
 }
 
 function showonscreen(obj){
-    const p=document.getElementById('block');
+    const p=document.getElementById('form');
     const list=document.createElement('li');
     list.id=obj.id
     list.textContent=list.textContent+obj.expense+' - '+obj.description+' - '+obj.category;
@@ -54,17 +54,12 @@ window.addEventListener('DOMContentLoaded', async ()=>{
     if(getExpenses.data.premiumUser===true){
         Premium();
     }
+    console.log(getExpenses.data.expense);
     for(let i in getExpenses.data.expense){
-        showonscreen(getExpenses.data[i]);
+        showonscreen(getExpenses.data.expense[i]);
     }
 }
     catch(error){
         console.log(error);
     }
 })
-
-function Premium(){
-    const btn = document.getElementById('rzp-button1');
-    btn.remove();
-    document.getElementById('label1').innerHTML = 'You are a Premium User! <button id="leaderboardbtn" class="btn btn-sm btn-outline-info m-2">Show leaderboard</button>';
-}

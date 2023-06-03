@@ -22,9 +22,3 @@ document.getElementById('rzp-button1').onclick = async function(e){
         alert('Something went wrong');
     })
     }
-
-    function Premium(){
-        const btn = document.getElementById('rzp-button1');
-        btn.remove();
-        document.getElementById('label1').innerHTML = 'You are a Premium User! <input type="button" id="leaderboardbtn" class="btn btn-sm btn-outline-info m-2" value="Show leaderboard"></input>';
-    }
