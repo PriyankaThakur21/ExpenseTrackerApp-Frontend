@@ -7,6 +7,7 @@ async function saveExpense(event){
     try{
     const token = localStorage.getItem('token');
     const post=await axios.post('http://localhost:3000/postexpense',obj, {headers: {"Authorization": token}});
+    console.log(post);
     showonscreen(post.data);
     }
     catch(err){
@@ -30,20 +31,20 @@ function showonscreen(obj){
     p.appendChild(list);
 }
 
-async function deletedata(userid){
+async function deletedata(id){
     try{
     const token = localStorage.getItem('token');
-    const dlt = axios.delete(`http://localhost:3000/deleteexpense/${userid}`, {headers: {"Authorization": token}});
-    removeexpensefromscreen(userid);
+    const dlt = axios.delete(`http://localhost:3000/deleteexpense/${id}`, {headers: {"Authorization": token}});
+    removeexpensefromscreen(id);
     }
 catch(err){
     console.log(err);
 }
 }
 
-function removeexpensefromscreen(userid){
-    const parentel=document.getElementById('block');
-    const childel=document.getElementById(userid)
+function removeexpensefromscreen(id){
+    const parentel=document.getElementById('form');
+    const childel=document.getElementById(id)
     parentel.removeChild(childel)
 }
 
