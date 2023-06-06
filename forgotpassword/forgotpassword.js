@@ -5,12 +5,13 @@ async function forgotpassword(event){
         email: email
     }
     try{
-        const post = await axios.post('http://localhost:3000/password/forgotpassword', userDetails);
+        const post = await axios.post('http://localhost:3000/forgotpassword', userDetails);
         console.log(post);
-        alert('Email has been successfully sent');
-        location.href='login.html';
+        alert(post.data);
+        location.href='../users/login.html';
     }
     catch(err){
         console.log(err);
+        alert('Something went wrong');
     }
 }

@@ -7,7 +7,7 @@ async function signup(event){
     try{
     const post=await axios.post('http://localhost:3000/signin',obj);
     alert(post.data);
-    location.href='login.html';
+    location.href='./login.html';
     }
     catch(err){
     console.log(err)
@@ -26,11 +26,10 @@ async function loginUser(event){
         console.log(post);
         alert(post.data.message);
         localStorage.setItem('token', post.data.token);
-        location.href='expense.html';
+        location.href='../expenses/expense.html';
     }
     catch(error){
         console.log(error);
         alert(error.response.data);
     }
 }
-
