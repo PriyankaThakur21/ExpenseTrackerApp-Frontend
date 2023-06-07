@@ -50,17 +50,63 @@ function removeexpensefromscreen(id){
 
 window.addEventListener('DOMContentLoaded', async ()=>{
     try{
+        const page = 1;
     const token = localStorage.getItem('token');
-    const getExpenses= await axios.get('http://localhost:3000/getexpenses', {headers: {"Authorization": token}});
+    const getExpenses= await axios.get(`http://localhost:3000/getexpenses?page=${page}`, {headers: {"Authorization": token}});
+    console.log(getExpenses);
     if(getExpenses.data.premiumUser===true){
         Premium();
     }
-    console.log(getExpenses.data.expense);
-    for(let i in getExpenses.data.expense){
-        showonscreen(getExpenses.data.expense[i]);
-    }
+    showPagination(getExpenses.data);
 }
     catch(error){
         console.log(error);
     }
 })
+
+function showPagination({
+    currentPage,
+    hasNextPage,
+    nextPage,
+    hasPreviousPage,
+    previousPage,
+    lastPage
+}){
+    const pagination = document.getElementById('pagination');
+    pagination.innerHTML='';
+
+    if(hasPreviousPage){
+    const btn2 = document.createElement('button');
+    btn2.innerHTML = previousPage;
+    btn2.addEventListener('click', getExpenses(previousPage));
+    pagination.appendChild(btn2);
+    }
+    const btn1 = document.createElement('button');
+    btn1.innerHTML = currentPage;
+    btn1.addEventListener('click', getExpenses(currentPage));
+    pagination.appendChild(btn1);
+    if(hasNextPage){
+        const btn3 = document.createElement('button');
+        btn3.innerHTML = nextPage;
+        btn3.addEventListener('click', getExpenses(nextPage));
+        pagination.appendChild(btn3);
+        }
+}
+
+async function getExpenses(page){
+    try{
+        const token = localStorage.getItem('token');
+        const getExpenses = await axios.get(`http://localhost:3000/getexpenses?page=
+        ${page}`, {headers: {"Authorization": token}});
+        if(getExpenses.data.premiumUser===true){
+            Premium();
+        }
+        for(let i in getExpenses.data.expense){
+            showonscreen(getExpenses.data.expense[i]);
+        }
+        showPagination(getExpenses.data);
+    }
+        catch(error){
+            console.log(error);
+        }
+    }
