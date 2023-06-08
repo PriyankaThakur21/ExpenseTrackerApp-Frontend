@@ -34,7 +34,20 @@
           </div>
         </div>
       </form>
-      <div class="m-3" id="leaderboard"></div>
+      <div class="p-3">
+        <h3 class="p-2">My Expenses</h3>
+        <label for="rows">Rows per page:</label>
+        <select id="selectRows" name="rows">
+          <option value="select">--select--</option>
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+        </select>
+      <div id="Myexpense"></div>
+    </div>
+      <div id="pagination" class="m-3 text-center"></div>
+      <div class="p-3" id="leaderboard"></div>
   </div>
 <script src="expense.js"></script>
 <script src="../premiumUser/premium.js"></script>
