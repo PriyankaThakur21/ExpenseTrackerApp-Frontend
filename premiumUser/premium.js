@@ -6,20 +6,8 @@ function Premium(){
     document.getElementById('downloadexpense').onclick= function() {download()};
 }
 
-async function showLeaderBoard(){
-    try{
-    const users = await axios.get('http://localhost:3000/leaderboard');
-    console.log(users.data);
-    const leaderboardel = document.getElementById('leaderboard');
-    leaderboardel.innerHTML+='<h3>Leader Board</h3>';
-    for(i in users.data){
-        leaderboardel.innerHTML+=`<li>${users.data[i].name}-${users.data[i].totalExpense}</li>`;
-    }
-    console.log(leaderboardel);
-    }
-    catch(err){
-        console.log(err)
-    }
+function showLeaderBoard(){
+    location.href = '../leaderboard/leaderboard.html'
 }
 
 async function download(){

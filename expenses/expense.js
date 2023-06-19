@@ -47,7 +47,7 @@ catch(err){
 }
 
 function removeexpensefromscreen(id){
-    const parentel=document.getElementById('form');
+    const parentel=document.getElementById('Myexpense');
     const childel=document.getElementById(id)
     parentel.removeChild(childel)
 }
